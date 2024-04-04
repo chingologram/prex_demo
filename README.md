@@ -9,7 +9,10 @@ Clone the repository and install all dependencies by issuing:
 `composer install`
 
 
-This project uses Laravel sail. After installation, just run:
+This project uses Laravel sail. This means that Dockerfiles are included as a dependency under `vendor/laravel/sail/runtimes/8.x/Dockerfile`.
+
+
+After installation, just run:
 
 `./vendor/bin/sail up -d`
 
