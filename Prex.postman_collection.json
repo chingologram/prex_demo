@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "611c045e-bc9c-4549-be75-92d40ef7c856",
+		"name": "Prex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/login?email=admin@example.org&password=secret&scope=all&grant_type=client_credentials",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "admin@example.org"
+						},
+						{
+							"key": "password",
+							"value": "secret"
+						},
+						{
+							"key": "scope",
+							"value": "all"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search GIFs",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5YmIwZGI3Ny0zNzhiLTQ1NmMtOTliMy1jZDZmN2Y3NGY3YzYiLCJqdGkiOiI1M2I1MTNjMGIzZGZhOWFkNmRjMTk4ZDE5ZGJkMDEzNTIxY2ExZGQ4MzFiY2RiMzA4ODAzN2NhYWIzYTJjNWE4NTNkNTM1MWFlMmNhOWU2NiIsImlhdCI6MTcxMjE3NDE5NC43MzIxNTksIm5iZiI6MTcxMjE3NDE5NC43MzIxNjYsImV4cCI6MTcxMjE3NTk5NC43MjUxMzcsInN1YiI6IjMiLCJzY29wZXMiOltdfQ.Kw3QrUwjPKflsrCvcL_iYjheqUh5z01ThGrZVuY2R_HxmKVjXV8x5KxaRzLXjr-2KmUI5L1QNXBlqTXGeOtClEcjtCzAJSGiQpP137s9oNWRqMgoCIRz09dd1nUm97rpsRysQLbiYhHwlO-ciVPlE0aJe9i7sFxNL4VLZDeXRiE2EUVlmhFCYeL940hgwSTuIcpr6XseDiv3nvei1F52Bx5_G_ua3UFpEYIkjrRukyq9EifjDYt41cNqCnmKdwbx24g0oaXkSMpM2dyvolPhAl1PaeVgbfpU2NY-K0KF5gxczf_5aiC4rs6yjpOEC1uTz5dCzsyrt1JR67XBwwjBHeFH_jUlp3P-1iFi2pbtDcM0ekrMqlnEvseTfrvhkCYETXoclYy86KNgVaiVJ3zHCxeK-hFzkiua4YfgeryPp3e1EI0koys6FaQtHIwt6Ac9McMPEpfraHHbCkn3_Uprc-sG8G2HCOKpytZ9T8lnMe6U8vieuU3PnINPdYvvzykL8JE9k_dNa7HplXpSWEmc6jVNwLLmRUByZfuUpNZrDvOE_xX-4BwrDL3EvIhd8B9AlN5kDVyKGPHyjDZV88ov-g9_Gwy1ovGg01YmBTA6lSEQ_bCwyB-m_4OISyWlmwuIdkXvPjvWo3h33xJXEYhGD3DPoEN3UTYDdR4aAXHXLy8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/gifs?q=something",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"gifs"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "something"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find GIF by id",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							"pm.sendRequest({",
+							"    url: pm.environment.get(\"base_url\") + \"/login?email=\" + pm.environment.get(\"email\") + \"&password=\" + pm.environment.get(\"password\"),",
+							"    header: {",
+							"        'Accept': 'application/json'",
+							"    }",
+							"}, (err, response) => {",
+							"    console.log(response.json());",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5YmIwZGI3Ny0zNzhiLTQ1NmMtOTliMy1jZDZmN2Y3NGY3YzYiLCJqdGkiOiIxZDI4OTQ5MWQ0NjBlODllZjYzZWJkNTVhODk3OGNlYTQyOGQ3MTA0NTVlY2E2YTYwZWUzMWI1Yjk0ZWYzZTU0YjRlYjI3MDEwYmY1ZjU0MiIsImlhdCI6MTcxMjE5NTgxOC44NDcyMTcsIm5iZiI6MTcxMjE5NTgxOC44NDcyMjEsImV4cCI6MTcxMjE5NzYxOC44Mjg1Mywic3ViIjoiMyIsInNjb3BlcyI6W119.hn9qKU4_S1HYY405kmX0wY8kCI5jddJOQ6VTeUhRgqJWwujIv1yU9jPjTOt2i4izGLD1-Juqsvjd6pK7_wP1nz6FB7Se1lmSY0trLsTCmdvlq1Bpx5jJ2hOWq9eOJgV8uDrSw3VAxafeDkOwoqYNcTDktX90yc2lpW5LTR-kpmsgPgADqGWgnZRN8guMTWA32EYeHO3XVCpcFtrPkUtqWJ-qdsG063TMP3BnptSkgRcs26AKJdgzoyubdS5KdspO5G3lczuMabowBLxdxh23mG5bx4qdpecJxihWsva-Shp4fLB9dsI3dAM7TeIlrsV_pg3KV128LVCSa2r8lL5g1OsDBKqMB2j1vNIRyDC_7AwviKThfRpTtovIXpG6awalTmlnHj_CL7in5QPlrlCz7SLMf7HwGQbV2-ZGZX2r4J4Qh4ZMqzG8Agt91UQTbaTjAuz1XNlgN65OZMgzbvSZgtZEyjIGPx5Mcl87eEpcp5v0BiVVJ23tOEXL7eTSagLxZFxSvtVD5AtHWPu-wFNeq-GHNScBDQTdArl1Y0z4J58U96Z771wm15ermufKVOK4m1J7qElvEjKY9_7BHZgnFaObBE2MZvaY2Hc4mzuhHTLa17sUxM_Ujv4gJapXXbwM4QNikhimEkme8sQcFbClrSqA0yJngzTRPqcQIeESJww",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/gifs/byID?gif_id=GivFaWwBYkHiYNHdfo",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"gifs",
+						"byID"
+					],
+					"query": [
+						{
+							"key": "gif_id",
+							"value": "GivFaWwBYkHiYNHdfo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Favorite",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							"pm.sendRequest({",
+							"    url: pm.environment.get(\"base_url\") + \"/login?email=\" + pm.environment.get(\"email\") + \"&password=\" + pm.environment.get(\"password\"),",
+							"    header: {",
+							"        'Accept': 'application/json'",
+							"    }",
+							"}, (err, response) => {",
+							"    console.log(response.json());",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5YmIwZGI3Ny0zNzhiLTQ1NmMtOTliMy1jZDZmN2Y3NGY3YzYiLCJqdGkiOiIxZDI4OTQ5MWQ0NjBlODllZjYzZWJkNTVhODk3OGNlYTQyOGQ3MTA0NTVlY2E2YTYwZWUzMWI1Yjk0ZWYzZTU0YjRlYjI3MDEwYmY1ZjU0MiIsImlhdCI6MTcxMjE5NTgxOC44NDcyMTcsIm5iZiI6MTcxMjE5NTgxOC44NDcyMjEsImV4cCI6MTcxMjE5NzYxOC44Mjg1Mywic3ViIjoiMyIsInNjb3BlcyI6W119.hn9qKU4_S1HYY405kmX0wY8kCI5jddJOQ6VTeUhRgqJWwujIv1yU9jPjTOt2i4izGLD1-Juqsvjd6pK7_wP1nz6FB7Se1lmSY0trLsTCmdvlq1Bpx5jJ2hOWq9eOJgV8uDrSw3VAxafeDkOwoqYNcTDktX90yc2lpW5LTR-kpmsgPgADqGWgnZRN8guMTWA32EYeHO3XVCpcFtrPkUtqWJ-qdsG063TMP3BnptSkgRcs26AKJdgzoyubdS5KdspO5G3lczuMabowBLxdxh23mG5bx4qdpecJxihWsva-Shp4fLB9dsI3dAM7TeIlrsV_pg3KV128LVCSa2r8lL5g1OsDBKqMB2j1vNIRyDC_7AwviKThfRpTtovIXpG6awalTmlnHj_CL7in5QPlrlCz7SLMf7HwGQbV2-ZGZX2r4J4Qh4ZMqzG8Agt91UQTbaTjAuz1XNlgN65OZMgzbvSZgtZEyjIGPx5Mcl87eEpcp5v0BiVVJ23tOEXL7eTSagLxZFxSvtVD5AtHWPu-wFNeq-GHNScBDQTdArl1Y0z4J58U96Z771wm15ermufKVOK4m1J7qElvEjKY9_7BHZgnFaObBE2MZvaY2Hc4mzuhHTLa17sUxM_Ujv4gJapXXbwM4QNikhimEkme8sQcFbClrSqA0yJngzTRPqcQIeESJww",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/gifs/byID?gif_id=GivFaWwBYkHiYNHdfo",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"gifs",
+						"byID"
+					],
+					"query": [
+						{
+							"key": "gif_id",
+							"value": "GivFaWwBYkHiYNHdfo"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token",
+			"value": ""
+		}
+	]
+}
